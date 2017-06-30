@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Use Slim for templating language
-gem 'slim', '~> 3.0', '>= 3.0.8'
+gem 'slim-rails', '~> 3.1', '>= 3.1.2'
 
 # Use jquery
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
