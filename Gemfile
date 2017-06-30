@@ -33,6 +33,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Slim for templating language
+gem 'slim', '~> 3.0', '>= 3.0.8'
+
+# Use jquery
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+
+# Automatic Ruby code style checking tool
+gem 'rubocop', '~> 0.49.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
