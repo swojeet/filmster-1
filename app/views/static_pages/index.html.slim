@@ -1,4 +1,12 @@
-h1 StaticPages#index
-p Find me in app/views/static_pages/index.html.slim
-
-<div id="movies"></div>
+.row
+  .col-xs-12.col-md-4
+    h1.text-center Find Movies
+    .row
+      form#movie-search
+        .col-xs-8
+          input.form-control name="query" placeholder=("Enter Movie Name") type="text" /
+        .col-xs-4
+          button.btn.btn-success type="submit" Submit
+    
+  .col-xs-12.col-md-8
+    #movies
