@@ -1,7 +1,7 @@
 $(function(){
   $.ajax({
     url: 'https://api.themoviedb.org/3/search/movie?',
-	data:  {"api_key" : "6187f5c607108a1517d59f4dae103bf7", "query" : "Jack+Reacher"}
+  	data:  {"api_key" : "6187f5c607108a1517d59f4dae103bf7", "query" : "Jack+Reacher"}
   })
   .done(function(data){
     displayMovies(data);
