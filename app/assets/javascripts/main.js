@@ -14,16 +14,28 @@ $(function(){
 
 
   function displayMovies(data){
+    let container = $("#movies");
     let htmlString = "";
-    var imageUrl = getBaseImageUrl();
-    data["results"].forEach(function(movie){
-      htmlString += `<img src="${imageUrl}/${movie["poster_path"]}" />
-                    <p>${movie["title"]}</p>
-                    <p>${movie["overview"]}</p>
-                    `
-    });
 
-    $("#movies").append(htmlString);
+    container.empty();
+
+    var imageUrl = getBaseImageUrl();
+
+    if (data["results"].length == 0) {
+      console.log(data["results"].length);
+      htmlString = `<div class="alert alert-danger text-center" role="alert">No Data Found!</div>`
+    }
+    else{
+      data["results"].forEach(function(movie){
+        htmlString += `
+        <img src= "${imageUrl}/${movie["poster_path"]}" />
+
+                      <p>${movie["title"]}</p>
+                      <p>${movie["overview"]}</p>
+                      `
+      });
+    }
+    container.append(htmlString);
   }
 
   function getBaseImageUrl(){
