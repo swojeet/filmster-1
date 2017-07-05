@@ -21,13 +21,14 @@ $(function(){
 
     var imageUrl = getBaseImageUrl();
 
+    //check if the API responds back with an error i.e. no data found.
     if (data["results"].length == 0) {
       htmlString = `<div class="alert alert-danger text-center" role="alert">No Data Found!</div>`
     }
     else{
       data["results"].forEach(function(movie){
         htmlString += `
-        <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} />
+        <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}"/>
 
 
                       <p>${movie["title"]}</p>
@@ -38,6 +39,7 @@ $(function(){
     container.append(htmlString);
   }
 
+  //sends request to the /configuration api of TMDB
   function getBaseImageUrl(){
     var url = "";
     var settings = {
@@ -55,5 +57,39 @@ $(function(){
       url = response["images"]["base_url"] + response["images"]["poster_sizes"][3];
     });
     return url;
+  }
+
+  $('#movies').on('click','img',function(e){
+    e.preventDefault();
+
+    let id = $(e.target).data('id');
+
+    $.ajax({
+      url: 'https://api.themoviedb.org/3/movie/' + id + '?',
+      data: { "api_key": "ab3927766ef5b5254ec77d1289540da8" }
+    })
+    .done(function(data){
+      displayMovie(data);
+    })
+  })
+
+  function displayMovie(movie){
+    console.log(movie);
+    let container = $("#movies");
+    let htmlString = "";
+    container.empty();
+
+    var imageUrl = getBaseImageUrl();
+
+      htmlString += `
+                    <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}"/>
+                    <p>${movie["title"]}</p>
+                    <p>Summary: ${movie["overview"]}</p>
+                    <p>Budget: ${movie["budget"]}</p>
+                    <p>Popularity: ${movie["popularity"]}</p>
+                    <p>Website: <a href=${movie["homepage"]} target="blank">${movie["homepage"]}</a></p>
+                    <p>Status: ${movie["status"]}</p>
+                    `
+    container.append(htmlString);
   }
 });
