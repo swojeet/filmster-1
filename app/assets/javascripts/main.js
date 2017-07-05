@@ -22,13 +22,13 @@ $(function(){
     var imageUrl = getBaseImageUrl();
 
     if (data["results"].length == 0) {
-      console.log(data["results"].length);
       htmlString = `<div class="alert alert-danger text-center" role="alert">No Data Found!</div>`
     }
     else{
       data["results"].forEach(function(movie){
         htmlString += `
-        <img src= "${imageUrl}/${movie["poster_path"]}" />
+        <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} />
+
 
                       <p>${movie["title"]}</p>
                       <p>${movie["overview"]}</p>
@@ -50,8 +50,9 @@ $(function(){
     }
 
     $.ajax(settings).done(function (response) {
+      //Console log for taking screenshot while preparing lesson
       console.log(response);
-      url = response["images"]["base_url"] + response["images"]["poster_sizes"][2];
+      url = response["images"]["base_url"] + response["images"]["poster_sizes"][3];
     });
     return url;
   }
