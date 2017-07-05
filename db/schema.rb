@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630101409) do
+ActiveRecord::Schema.define(version: 20170705102149) do
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.string "plot"
+    t.string "release_date"
+    t.boolean "released", default: false, null: false
+    t.string "runtime"
+    t.string "popularity"
+    t.string "genre"
+    t.string "language"
+    t.string "budget"
+    t.string "average_vote"
+    t.string "vote_count"
+    t.string "poster"
+    t.string "homepage"
+    t.string "tmdb_id"
+    t.string "imdb_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tmdb_id"], name: "index_movies_on_tmdb_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"

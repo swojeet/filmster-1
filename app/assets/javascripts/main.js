@@ -85,6 +85,7 @@ $(function(){
                     <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}"/>
                     <p>${movie["title"]}</p>
                     <p>Summary: ${movie["overview"]}</p>
+                    <p>Runtime: ${movie["runtime"]} minutes</p>
                     <p>Budget: ${movie["budget"]}</p>
                     <p>Popularity: ${movie["popularity"]}</p>
                     <p>Website: <a href=${movie["homepage"]} target="blank">${movie["homepage"]}</a></p>
