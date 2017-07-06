@@ -94,7 +94,7 @@ $(function(){
 
                     <form id="rating-form" action="/reviews" method="POST">
                       <input type="hidden" name="authenticity_token" value=${window._token} />
-                      <input type="hidden" name="tmdb_id" value=${movie["tmdb_id"]} />
+                      <input type="hidden" name="tmdb_id" value=${movie["id"]} />
                       <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"/>
                       <br />
                       <input type="submit" class="btn btn-success pull-right" />
