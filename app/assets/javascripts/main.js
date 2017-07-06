@@ -19,8 +19,9 @@ $(function(){
 
     container.empty();
 
-    var imageUrl = getBaseImageUrl();
-
+    let imageUrl = getBaseImageUrl();
+    console.log("hello", imageUrl);
+    // let imageUrl = imageUrl1();
     //check if the API responds back with an error i.e. no data found.
     if (data["results"].length == 0) {
       htmlString = `<div class="alert alert-danger text-center" role="alert">No Data Found!</div>`
@@ -55,6 +56,7 @@ $(function(){
       //Console log for taking screenshot while preparing lesson
       console.log(response);
       url = response["images"]["base_url"] + response["images"]["poster_sizes"][3];
+      // console.log(this.url);
     });
     return url;
   }
