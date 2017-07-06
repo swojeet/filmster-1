@@ -56,7 +56,6 @@ $(function(){
       //Console log for taking screenshot while preparing lesson
       console.log(response);
       url = response["images"]["base_url"] + response["images"]["poster_sizes"][3];
-      // console.log(this.url);
     });
     return url;
   }
