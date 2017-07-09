@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705105015) do
+ActiveRecord::Schema.define(version: 20170709143233) do
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20170705105015) do
     t.boolean "released", default: false, null: false
     t.string "runtime"
     t.string "popularity"
-    t.string "genre"
     t.string "language"
     t.string "budget"
     t.string "average_vote"
@@ -30,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170705105015) do
     t.string "imdb_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "genre", default: ""
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id"
   end
 
