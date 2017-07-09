@@ -55,7 +55,8 @@
           = @movie.homepage
   
   .col-xs-12.col-md-6
-    h2 Reviews
+    h2 
+      | Reviews
     - if @movie.reviews.present?
       - @movie.reviews.each do |review|
         .row
@@ -63,4 +64,14 @@
             = review.user_username
           .col-xs-6.col-md-9
             = review.comment
-      
+    - else
+      h3 
+        | No Reviews Yet!
+
+    - if user_signed_in? && !current_user.reviewed?(@movie)
+        form#rating-form action="/reviews" method="POST" 
+          input name="authenticity_token" type="hidden" value="${window._token}" /
+          input name="tmdb_id" type="hidden" value="#{@movie.tmdb_id}" /
+          textarea.form-control name="review[comment]" placeholder=("Your review here.") 
+          br/
+          input.btn.btn-success.pull-right type="submit" /
