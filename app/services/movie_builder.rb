@@ -17,9 +17,7 @@ class MovieBuilder
     @movie.runtime = @fetched_movie.runtime
     @movie.popularity = @fetched_movie.popularity
     # @movie.genre = @fetched_movie.genres.collect { |x| x[:name] }
-    @movie.genre = ""
     @fetched_movie.genres.each { |x| @movie.genre += (x.name + " ")}
-    binding.pry
     @movie.language = @fetched_movie.original_language
     @movie.budget = @fetched_movie.budget
     @movie.average_vote = @fetched_movie.vote_average
