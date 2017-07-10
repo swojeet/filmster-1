@@ -102,4 +102,10 @@ $(function(){
                     `
     container.append(htmlString);
   }
+
+  $('.grid').masonry({
+    // options
+    itemSelector: '.grid-item',
+    columnWidth: 200
+  });
 });
