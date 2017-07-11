@@ -103,9 +103,16 @@ $(function(){
     container.append(htmlString);
   }
 
-  $('.grid').masonry({
+  // init Masonry
+  var $grid = $('.grid').masonry({
     // options
     itemSelector: '.grid-item',
-    columnWidth: 200
+    // use element for option
+    columnWidth: 200,
+    percentPosition: true
+  });
+  // layout Masonry after each image loads
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
   });
 });
