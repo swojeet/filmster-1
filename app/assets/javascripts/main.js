@@ -29,7 +29,7 @@ $(function(){
     else{
       data["results"].forEach(function(movie){
         htmlString += `
-        <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}"/>
+        <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class = "movie_poster"/>
 
 
                       <p>${movie["title"]}</p>
@@ -60,7 +60,7 @@ $(function(){
     return url;
   }
 
-  $('#movies').on('click','img',function(e){
+  $('#movies').on('click','img.movie_poster',function(e){
     e.preventDefault();
 
     let id = $(e.target).data('id');

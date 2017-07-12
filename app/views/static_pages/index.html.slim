@@ -9,7 +9,10 @@
           button.btn.btn-success type="submit" Submit
     
   .col-xs-12.col-md-8
-    .grid.top-movies#movies
-      -@movies.results.each do |movie|
-        .grid-item
-          = image_tag("https://image.tmdb.org/t/p/w150" + movie.poster_path)
+    #movies
+      .grid.top-movies
+        -@movies.results.each do |movie|
+          .grid-item
+            .movie_image
+              = link_to image_tag("https://image.tmdb.org/t/p/w150" + movie.poster_path), movies_path(tmdb_id: movie.id)
+            
