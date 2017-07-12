@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :reviews
 
+  mount_uploader :avatar, AvatarUploader
+
   def reviewed?(movie)
     self.reviews.where(movie_id: movie.id).exists? ? true : false
   end

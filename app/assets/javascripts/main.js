@@ -110,6 +110,7 @@ $(function(){
     // use element for option
     columnWidth: 200,
     percentPosition: true
+
   });
   // layout Masonry after each image loads
   $grid.imagesLoaded().progress( function() {
