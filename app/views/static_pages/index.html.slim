@@ -15,4 +15,5 @@
           .grid-item
             .movie_image
               = link_to image_tag("https://image.tmdb.org/t/p/w150" + movie.poster_path), movies_path(tmdb_id: movie.id)
-            
+            .movie_details
+              = movie.title
