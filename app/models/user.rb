@@ -23,4 +23,8 @@ class User < ApplicationRecord
   def follow(other_user)
     following_relationships.create(followed_id: other_user.id)
   end
+
+  def unfollow(other_user)
+    following_relationships.destroy(followed_id: other_user.id)
+  end
 end
