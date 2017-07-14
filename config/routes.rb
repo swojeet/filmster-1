@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'movies/:tmdb_id', to: 'movies#show', as: :movies
 
   resources :users, only: :show
+  resources :relationships, only: [:create, :destroy]
 end
