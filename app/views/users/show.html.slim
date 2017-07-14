@@ -11,7 +11,15 @@ ul.user-stats
     .number-label Followers
   li#user-following
     .number-label Following
-    
+
+.follow_unfollow_btn
+  = binding.pry
+  - if user_signed_in? && current_user.following?(@user)
+    button.btn.btn-default.btn-lg 
+      | Following
+  - else
+    button.btn.btn-default.btn-lg 
+      | Follow
 .grid#reviewed-movies
 
 
