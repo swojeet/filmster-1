@@ -9,16 +9,21 @@ ul.user-stats
     .number-value= @user.reviews.count
   li#user-followers
     .number-label Followers
+    .number-value= @user.followed_users.count
   li#user-following
     .number-label Following
+    .number-value= @user.following_users.count
 
-.follow_unfollow_btn
+- unless current_user == @user
   - if user_signed_in? && current_user.following?(@user)
-    button.btn.btn-default.btn-lg 
-      | Following
+    .follow_unfollow_btn
+      button.btn.btn-default.btn-lg 
+        = link_to 'Following', relationship_path(id: @user), method: :delete 
   - else
-    button.btn.btn-default.btn-lg
-      | Follow
+    .follow_unfollow_btn
+      button.btn.btn-default.btn-lg
+        = link_to 'Follow', relationships_path(id: @user), method: :post
+
 .grid#reviewed-movies
 
 
