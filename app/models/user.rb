@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :following_users, through: :following_relationships, source: :followed
   has_many :followed_users, through: :followed_relationships, source: :follower
 
+  has_many :upvotes, through: :reviews, dependent: :destroy
+
   def reviewed?(movie)
     self.reviews.where(movie_id: movie.id).exists? ? true : false
   end

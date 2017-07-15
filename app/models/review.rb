@@ -5,4 +5,6 @@ class Review < ApplicationRecord
   delegate :username, to: :user,prefix: true
 
   validates :user, :movie, presence: true
+
+  has_many :upvotes, dependent: :destroy
 end
