@@ -3,19 +3,11 @@
 h1.text-center
   = @user.username
 
-ul.user-stats
-  li
-    .number-label Reviews
-    .number-value= @user.reviews.count
-  li#user-followers
-    .number-label Followers
-    .number-value= @user.followed_users.count
-  li#user-following
-    .number-label Following
-    .number-value= @user.following_users.count
-
+#user_details
+  = render partial: 'user_info'
+  
 #follow_unfollow_btn
- = render partial: 'relationships/follow_unfollow.html.slim'
+  = render partial: 'relationships/follow_unfollow'
 
 .grid#reviewed-movies
 
