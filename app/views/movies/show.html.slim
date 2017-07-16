@@ -60,9 +60,11 @@
     - if @movie.reviews.present?
       - @movie.reviews.each do |review|
         .row
-          .col-xs-6.col-md-3
+          .col-xs-2.col-md-1#upvotes_field
+            = render partial: 'upvotes/upvote_fields', locals: {review: review, current_user: current_user}
+          .col-xs-4.col-md-3
             = review.user_username
-          .col-xs-6.col-md-9
+          .col-xs-6.col-md-8
             = review.comment
     - else
       h3 
