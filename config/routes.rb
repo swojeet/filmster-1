@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   resources :reviews
   get 'movies/:tmdb_id', to: 'movies#show', as: :movies
 
-  resources :users, only: :show
+  resources :users, only: [:show]
   resources :relationships, only: [:create, :destroy]
   resources :upvotes, only: [:create, :destroy]
 
-  get 'static_pages/timeline'
+  get '/timeline', to: 'static_pages#timeline'
+  get 'user/timeline', to: 'users#timeline'
 end
