@@ -63,7 +63,7 @@
           .col-xs-2.col-md-1#upvotes_field
             = render partial: 'upvotes/upvote_fields', locals: {review: review, current_user: current_user}
           .col-xs-4.col-md-3
-            = review.user_username
+            = link_to review.user_username, user_path(review.user)
           .col-xs-6.col-md-8
             = review.comment
     - else
