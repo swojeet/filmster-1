@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.new(review_params.merge(movie_id: @movie.id))
 
     if @review.save
-      flash[:success] = "Review saved!"
+      flash[:notice] = "Review saved!"
       redirect_to root_path
     else
       flash[:alert] = "Woops! It seems there was an error."

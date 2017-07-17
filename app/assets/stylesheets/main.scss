@@ -1,0 +1,61 @@
+nav{
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'Amaranth', sans-serif;
+  .navbar-brand{
+    font-size: 25px;
+  }
+}
+
+.main-container{
+  width: 85%;
+  margin: 0 auto;
+  font-family: 'Exo', sans-serif;
+}
+
+.vertical-margin{
+  margin: 15px 0;
+}
+
+.movie-container .movie_name{
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.movie-details{
+  border: solid 1px #ffeeee;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+.margin-20{
+  margin: 20px;
+}
+
+.padding-30{
+  padding: 30px;
+}
+
+.right-padding-100{
+  padding-right: 100px !important;
+}
+
+.right-padding-60{
+  padding-right: 60px !important;
+}
+
+.genre_tags{
+  background-color: #f8f8f8;
+  margin: 1px 6px;
+  padding: 2px;
+}
+
+#timeline-reviews{
+  border: solid 1px #ffeeee;
+  border-radius: 20px;
+  margin: 20px;
+}

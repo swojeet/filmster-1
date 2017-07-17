@@ -29,11 +29,17 @@ $(function(){
     else{
       data["results"].forEach(function(movie){
         htmlString += `
-        <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class = "movie_poster"/>
+        <div class = "row margin-20 padding-30">
+          <div class = "col-xs-12 col-md-7">
+            <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}" class = "movie_poster"/>
+          </div>
 
-
-                      <p>${movie["title"]}</p>
-                      <p>${movie["overview"]}</p>
+          <div class = "col-xs-12 col-md-5">
+              <h2>${movie["title"]}</h2>
+              <p class = "text-justify">${movie["overview"]}</p>
+          </div>
+        </div>
+        <hr/>
                       `
       });
     }
@@ -83,22 +89,33 @@ $(function(){
     var imageUrl = getBaseImageUrl();
 
       htmlString += `
-                    <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}"/>
-                    <p>${movie["title"]}</p>
-                    <p>Summary: ${movie["overview"]}</p>
-                    <p>Runtime: ${movie["runtime"]} minutes</p>
-                    <p>Budget: ${movie["budget"]}</p>
-                    <p>Popularity: ${movie["popularity"]}</p>
-                    <p>Website: <a href=${movie["homepage"]} target="blank">${movie["homepage"]}</a></p>
-                    <p>Status: ${movie["status"]}</p>
+        <div class = "row margin-20 padding-30">
+          <div class = "col-xs-12 col-md-7">
+            <img src=${movie["poster_path"] == null ? "/assets/default_image.png" : imageUrl + "/" + movie["poster_path"]} data-id="${movie['id']}"/>
+          </div>
 
-                    <form id="rating-form" action="/reviews" method="POST">
-                      <input type="hidden" name="authenticity_token" value=${window._token} />
-                      <input type="hidden" name="tmdb_id" value=${movie["id"]} />
-                      <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"/>
-                      <br />
-                      <input type="submit" class="btn btn-success pull-right" />
-                    </form>
+          <div class = "col-xs-12 col-md-5">
+            <h2 class= "text-center">${movie["title"]}</h2>
+            <p><strong>Summary:</strong> ${movie["overview"]}</p>
+            <p><strong>Runtime:</strong> ${movie["runtime"]} minutes</p>
+            <p><strong>Budget:</strong> $ ${movie["budget"]}</p>
+            <p><strong>Popularity:</strong> ${movie["popularity"]}</p>
+            <p><strong>Website:</strong> <a href=${movie["homepage"]} target="blank">${movie["homepage"]}</a></p>
+            <p><strong>Status:</strong> ${movie["status"]}</p>
+          </div>
+        </div>
+
+        <div class = "row margin-20 padding-30">
+          <div class = "col-xs-12 col-md-12">
+            <form id="rating-form" action="/reviews" method="POST">
+              <input type="hidden" name="authenticity_token" value=${window._token} />
+              <input type="hidden" name="tmdb_id" value=${movie["id"]} />
+              <textarea name= "review[comment]" class="form-control" placeholder="Your movie review"/>
+              <br />
+              <input type="submit" class="btn btn-success pull-right" />
+            </form>
+          </div>
+        </div>
                     `
     container.append(htmlString);
   }
