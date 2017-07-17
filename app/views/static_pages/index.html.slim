@@ -2,12 +2,26 @@
   .col-xs-12.col-md-4
     h1.text-center Find Movies
     .row
-      form#movie-search
-        .col-xs-8
-          input.form-control name="query" placeholder=("Enter Movie Name") type="text" /
-        .col-xs-4
-          button.btn.btn-success type="submit" Submit
-    
+      .search_form.col-xs-12.col-md-12
+        form#movie-search
+          .col-xs-8
+            input.form-control name="query" placeholder=("Enter Movie Name") type="text" /
+          .col-xs-4
+            button.btn.btn-success type="submit" Submit
+      
+    hr/
+    .row
+      .latest-reviews
+        h3.text-center Latest Blurbs
+        -@recent_reviews.each do |review|
+          p = review.comment
+          p
+            = link_to review.user_username,user_path(review.user)
+            |  (
+            = link_to review.movie_title, movies_path(tmdb_id: review.movie_tmdb_id)
+            | )
+          hr/
+   
   .col-xs-12.col-md-8
     #movies
       .grid.top-movies
