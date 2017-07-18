@@ -1,0 +1,7 @@
+- unless current_user == @user
+  - if user_signed_in? && current_user.following?(@user)
+    .follow_btn.text-center
+      = link_to 'Following', relationship_path(id: @user), method: :delete, class: 'btn btn-default btn-lg', remote: true
+  - else
+    .unfollow_btn.text-center
+      = link_to 'Follow', relationships_path(id: @user), method: :post, class: 'btn btn-default btn-lg', remote: true

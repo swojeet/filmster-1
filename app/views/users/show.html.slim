@@ -1,0 +1,115 @@
+= image_tag @user.avatar, class: 'prof-pic-lg'
+
+h1.text-center
+  = @user.username
+
+#user_details
+  = render partial: 'user_info'
+  
+#follow_unfollow_btn
+  = render partial: 'relationships/follow_unfollow'
+
+.grid#reviewed-movies
+
+
+javascript:
+  var $grid = $('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  // use element for option
+  columnWidth: 200,
+  percentPosition: true
+  });
+  // layout Masonry after each image loads
+  $grid.imagesLoaded().progress( function() {
+    $grid.masonry('layout');
+  });
+  
+  let userData = {};
+  let user_id = #{@user.id};
+  $.ajax({
+    url: '/users/' + user_id + '.json',
+    type: 'GET'
+  })
+  .done(function(data){
+    userData = data;
+    displayReviews(data);
+  });
+
+  function displayReviews(data){
+    let container = $(".grid#reviewed-movies");
+    let htmlString = "";
+
+    container.empty();
+    console.log(data);
+    //check if the API responds back with an error i.e. no data found.
+    if (data["reviews"].length == 0) {
+      htmlString = `<div class="alert alert-danger text-center" role="alert">No Data Found!</div>`
+    }
+    else{
+      data["reviews"].forEach(function(review){
+        htmlString += `
+                      <div class="grid-item">
+                        <a href="/movies/${review["movie"]["tmdb_id"]}">
+                          <img src=${review["movie"]["poster"] == null ? "/assets/default_image.png" : "https://image.tmdb.org/t/p/w154/" + review["movie"]["poster"]} data-id="${review['movie']['tmdb_id']}"/>
+                          <p>${review["movie"]["title"]}</p>
+                        </a>
+                      </div>
+                      `
+      });
+    }
+    container.append(htmlString);
+    container.masonry('reloadItems');
+    
+    container.imagesLoaded(function(){
+      container.masonry('layout');
+    });
+  }
+  
+  $('#user-reviews').on('click', function(e){
+    $('#reviewed-movies').empty();
+    displayReviews(userData);
+  });
+  $('#user-following').on('click', function(e){
+    $('#reviewed-movies').empty();
+    getFollowing();
+  });
+  $('#user-followers').on('click', function(e){
+    $('#reviewed-movies').empty();
+    getFollowers();
+  });
+  
+  function getFollowing(){
+    let htmlString = "";
+    if(userData.following_relationships == ""){
+      htmlString += `<div class="alert alert-info text-center"><p>This user has not followed any users yet.</p></div>`;
+    }
+    else{
+      userData.following_relationships.forEach(function(userInfo){
+        htmlString += `
+                      <div class="following_users">
+                        <a href="/users/${userInfo["user"]["id"]}">
+                          <p>${userInfo["user"]["username"]}</p>
+                        </a>
+                      </div>`;
+      });
+    }
+    $('#reviewed-movies').append(htmlString);
+  }
+  function getFollowers(){
+    let htmlString = "";
+    if(userData.followed_relationships == ""){
+      htmlString += `<div class="alert alert-info text-center"><p>This user has no followers yet.</p></div>`;
+    }
+    else{
+      userData.followed_relationships.forEach(function(userInfo){
+        htmlString += `
+                      <div class="following_users">
+                        <a href="/users/${userInfo["user"]["id"]}">
+                          <p>${userInfo["user"]["username"]}</p>
+                        </a>
+                      </div>`;
+      });
+    }
+    $('#reviewed-movies').append(htmlString);
+  }

@@ -1,0 +1,10 @@
+ul.user-stats
+  li#user-reviews
+    .number-label Reviews
+    .number-value= @user.reviews.count
+  li#user-followers
+    .number-label Followers
+    .number-value= @user.followed_users.count
+  li#user-following
+    .number-label Following
+    .number-value= @user.following_users.count

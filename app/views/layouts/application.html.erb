@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flimster</title>
+    <title>Filmster</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
+    <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
+
+
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
   </head>
 
   <body>
@@ -13,42 +21,38 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Brand</a>
+          </button> -->
+          <%= link_to 'FILMSTER', root_path, class: 'navbar-brand' %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-           <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li class="active"><a href="#">Link</a></li>
-
-          </ul>
-               <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
-             <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-                     </ul>
-            </li>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to 'Timeline', timeline_path %></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Login', new_user_session_path %></a></li>
+            <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash[:notice] %>
+      <p class="notice alert alert-success text-center"><strong><%= notice %></strong></p>
+    <% elsif flash[:alert] %>
+      <p class="alert alert alert-danger text-center"><strong><%= alert %></strong></p>
+    <% end %>
 
-
-
-
-    <%= yield %>
+    <div class="main-container">
+      <%= yield %>
+    </div>
   </body>
 </html>
