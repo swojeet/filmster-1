@@ -56,7 +56,7 @@
       - @movie.reviews.each do |review|
         .row
           - if user_signed_in?
-            .col-xs-2.col-md-2#upvotes_field
+            .col-xs-2.col-md-2 id="upvotes_field_#{review.id}"
               = render partial: 'upvotes/upvote_fields', locals: {review: review, current_user: current_user}
           .col-xs-4.col-md-2
             = link_to review.user_username, user_path(review.user)
