@@ -1,5 +1,5 @@
 $(function(){
-  let form=$('#movie-search');
+  let form = $('#movie-search');
   form.submit(function(e){
     e.preventDefault();
 
